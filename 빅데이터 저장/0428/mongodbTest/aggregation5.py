@@ -1,4 +1,4 @@
-# group, match, sort, sum 명령어
+# group, match, sort, sum 실습
 
 import pymongo
 
@@ -11,10 +11,10 @@ db = connection.test_db
 # select state, sum(pop) from zip group by state having sum(pop)>10000000
 result = db.zip.aggregate([
     {'$group':
-         { # state로 그룹핑
-             '_id': '$state',
-             'total_pop': {'$sum': '$pop'}
-         }
+        { # state로 그룹핑
+            '_id': '$state',
+            'total_pop': {'$sum': '$pop'}
+        }
     },
     # total_pop이 10~ 보다 큰 경우
     {'$match': {'total_pop': {'$gte': 10000000}}},
@@ -47,3 +47,4 @@ result = db.zip.aggregate([
 ])
 for i in result:
     print(i)
+
