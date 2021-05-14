@@ -21,3 +21,4 @@ class MongoDbManager:
             return cls.database.insert_many(_data)
         else:
             return cls.database.insert_one(_data)
+
